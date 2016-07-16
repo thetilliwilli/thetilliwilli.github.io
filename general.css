@@ -58,6 +58,8 @@ box-shadow: 0px 10px 15px 5px #888888;
 	/*text-shadow: -1px 0 rgba(255,255,255,0.6), 0 1px rgba(255,255,255,0.6), 1px 0 rgba(255,255,255,0.6), 0 -1px rgba(255,255,255,0.6);*/
 	box-shadow: inset 0px 0px 3px 0px black;
 	transition: color 0.1s ease-in-out 0s;
+	font-size:10vmin;
+	transition: text-shadow 0.08s ease-in-out 0s;
 }
 #header h1:hover
 {
@@ -65,13 +67,14 @@ box-shadow: 0px 10px 15px 5px #888888;
 	/*Var1 - weak white*/
 	/*text-shadow: -1px 0 rgba(255,255,255,0.6), 0 1px rgba(255,255,255,0.6), 1px 0 rgba(255,255,255,0.6), 0 -1px rgba(255,255,255,0.6);*/
 	/*Var2 - a little yellow*/
-	text-shadow: -1px 0 rgba(255,255,232,1), 0 1px rgba(255,255,232,1), 1px 0 rgba(255,255,232,1), 0 -1px rgba(255,255,232,1);
+	/*text-shadow: -1px 0 rgba(255,255,232,1), 0 1px rgba(255,255,232,1), 1px 0 rgba(255,255,232,1), 0 -1px rgba(255,255,232,1);*/
 	/*Var3 - cold blue*/
 	/*text-shadow: -1px 0 rgba(192,192,255,1), 0 1px rgba(192,192,255,1), 1px 0 rgba(192,192,255,1), 0 -1px rgba(192,192,255,1);*/
 	/*Var4 - some kind*/
-	/*text-shadow: -1px 0 1px rgba(255,255,232,1), 0 1px 1px rgba(255,255,232,1), 1px 0 1px rgba(255,255,232,1), 0 -1px 1px rgba(255,255,232,1);*/
-	color:rgba(210, 210, 210, 1);
+	text-shadow: -1px 0 1px rgba(255,255,232,1), 0 1px 1px rgba(255,255,232,1), 1px 0 1px rgba(255,255,232,1), 0 -1px 1px rgba(255,255,232,1);
+	color:rgba(64, 64, 64, 1);
 	transition: color 0.4s ease-in-out 0s;
+	
 }
 /*body
 {
