@@ -17,7 +17,6 @@ $(document).ready(function(){
         }
         newX = oldX + pEvent.movementX*sensivity;
         newY = oldY + pEvent.movementY*sensivity;
-        console.log(`${newX}px ${newY}px`);
         theHeadBG.style.backgroundPosition = `${newX}px ${newY}px`;
     };
 });

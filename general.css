@@ -76,14 +76,14 @@ box-shadow: 0px 10px 15px 5px #888888;
 	transition: color 0.4s ease-in-out 0s;
 	
 }
-/*body
+.container-fluid
 {
-	background-image: url("hex3.png");
+margin-top:2vmin;
 }
-*/
-/*.container-fluid
+#header h1 i
 {
-	background-color: rgba(255,255,255,1);
-	width:90%;
-	height:100%;
-}*/
+	position: absolute;
+	left: 10vmin;
+	font-size: 25vmin;
+	top: 0vmin;
+}
