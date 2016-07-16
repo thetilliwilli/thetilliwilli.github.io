@@ -87,3 +87,8 @@ margin-top:2vmin;
 	font-size: 25vmin;
 	top: 0vmin;
 }
+i
+{
+	/*Чтобы не проскакивала первая запись TilliWilli Production при пропадание эмодзи*/
+	pointer-events: none;
+}

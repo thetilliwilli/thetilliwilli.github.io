@@ -1,15 +1,17 @@
 var principles = [
     "TilliWilli Production",
-    "and PandaHead studio",
-    "presents", "From heart",
-    "Awesome", "About future",
-    "It'll make ur day",
-    "Some super stuff",
+    "and <u>PandaHead</u> studio",
+    "presents",
+    "from heart",
+    "awesome",
+    // "About future",
+    "Some Super Stuff",
+    "wich will make ur day",
     "and it will",
     "be...",
-    "<i class=\"em em-panda_face\"></i>the Panda Head",
-    "<i class=\"em em-panda_face\"></i>thx for watching",
-    "<i class=\"em em-panda_face\"></i>one more time"
+    "<i class=\"em em-panda_face\"></i>The Panda Head",
+    "<i class=\"em em-panda_face\"></i>Thx for watching",
+    "<i class=\"em em-panda_face\"></i>One more time?"
     ];
 $(document).ready(function(){
     var currentPrinciples = Array.from(principles);
