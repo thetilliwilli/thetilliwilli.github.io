@@ -33,3 +33,19 @@ function StartAutoPlayMusic(pVolumeDelta, pTimeDelta)
         theMusic.volume = startVolume;
     }, pTimeDelta);
 }
+function GotoFacebook()
+{
+    window.location.href = "https://www.facebook.com/fiantsev.sergey";
+}
+function GotoVK()
+{
+    window.location.href = "https://vk.com/tilliwilli";
+}
+function GotoInstagram()
+{
+    window.location.href = "https://www.instagram.com/thetilliwilli/";
+}
+function GotoEMail()
+{
+    window.location.href = "mailto:tilliwilli@gmail.com";
+}
