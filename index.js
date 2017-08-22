@@ -35,7 +35,7 @@ function StartAutoPlayMusic(pVolumeDelta, pTimeDelta)
 }
 function GotoFacebook()
 {
-    window.location.href = "https://www.facebook.com/fiantsev.sergey";
+    window.location.href = "https://www.facebook.com/thetilliwilli";
 }
 function GotoVK()
 {
