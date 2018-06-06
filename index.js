@@ -7,7 +7,7 @@ function ToogleMusic() {
     else {
         $("#musicOn").css("visibility", "visible");
         $("#musicOff").css("visibility", "hidden");
-        $("#theMusic")[0].play();
+        StartAutoPlayMusic();
     }
 }
 function StartAutoPlayMusic(pVolumeDelta, pTimeDelta) {
