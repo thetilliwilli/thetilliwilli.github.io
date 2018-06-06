@@ -15,6 +15,13 @@ window.fadeInMusicTimer = null;
 window.fadeOutMusicTimer = null;
 
 function FadeInMusic(pVolumeDelta, pTimeDelta) {
+    ga('send', {
+        hitType: 'event',
+        eventCategory: 'Music',
+        eventAction: 'play',
+        eventLabel: 'MusicControls'
+      });
+
     pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
     pTimeDelta = pTimeDelta ? pTimeDelta : 100;
     var startVolume = 0.0;
@@ -34,6 +41,13 @@ function FadeInMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function FadeOutMusic(pVolumeDelta, pTimeDelta) {
+    ga('send', {
+        hitType: 'event',
+        eventCategory: 'Music',
+        eventAction: 'pause',
+        eventLabel: 'MusicControls'
+      });
+
     pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
     pTimeDelta = pTimeDelta ? pTimeDelta : 100;
     var theMusic = $("#theMusic")[0];
@@ -53,6 +67,12 @@ function FadeOutMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function OpenNewWindow(url, isTab) {
+    ga('send', 'event', {
+        eventCategory: 'Outbound Link',
+        eventAction: 'click',
+        eventLabel: url
+    });
+
     if (isTab)
         window.open(url, "_blank");
     else
