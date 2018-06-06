@@ -2,28 +2,51 @@ function ToogleMusic() {
     if ($("#musicOff").css("visibility") === "hidden") {
         $("#musicOn").css("visibility", "hidden");
         $("#musicOff").css("visibility", "visible");
-        $("#theMusic")[0].pause();
+        FadeOutMusic();
     }
     else {
         $("#musicOn").css("visibility", "visible");
         $("#musicOff").css("visibility", "hidden");
-        StartAutoPlayMusic();
+        FadeInMusic();
     }
 }
-function StartAutoPlayMusic(pVolumeDelta, pTimeDelta) {
+
+window.fadeInMusicTimer = null;
+window.fadeOutMusicTimer = null;
+
+function FadeInMusic(pVolumeDelta, pTimeDelta) {
     pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
     pTimeDelta = pTimeDelta ? pTimeDelta : 100;
     var startVolume = 0.0;
     var endVolume = 0.9;
-    var fadeOnTimer;
     var theMusic = $("#theMusic")[0];
     theMusic.volume = startVolume;
+    window.clearInterval(window.fadeOutMusicTimer);
     theMusic.play();
-    fadeOnTimer = setInterval(function () {
+    window.fadeInMusicTimer = setInterval(function () {
         startVolume += pVolumeDelta;
         if (startVolume >= endVolume) {
             startVolume = endVolume;
-            clearInterval(fadeOnTimer);
+            clearInterval(window.fadeInMusicTimer);
+        }
+        theMusic.volume = startVolume;
+    }, pTimeDelta);
+}
+
+function FadeOutMusic(pVolumeDelta, pTimeDelta) {
+    pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
+    pTimeDelta = pTimeDelta ? pTimeDelta : 100;
+    var theMusic = $("#theMusic")[0];
+    var startVolume = theMusic.volume || 0.9;
+    var endVolume = 0.0;
+    theMusic.volume = startVolume;
+    window.clearInterval(window.fadeInMusicTimer);
+    window.fadeOutMusicTimer = setInterval(function () {
+        startVolume -= pVolumeDelta;
+        if (startVolume <= endVolume) {
+            startVolume = endVolume;
+            clearInterval(window.fadeOutMusicTimer);
+            theMusic.pause();
         }
         theMusic.volume = startVolume;
     }, pTimeDelta);
