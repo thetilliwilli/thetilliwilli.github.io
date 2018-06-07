@@ -3,7 +3,7 @@ function VLen(v){
 }
 
 function VNorm(v){
-    var vlen = VLen(v);
+    var vlen = VLen(VClone(v));
     return {
         x: v.x/vlen,
         y: v.y/vlen
@@ -11,8 +11,13 @@ function VNorm(v){
 }
 
 function VMul(v, scalar){
+    v = VClone(v);
     return {
         x: v.x*scalar,
         y: v.y*scalar,
     }
+}
+
+function VClone(v){
+    return JSON.parse(JSON.stringify(v));
 }

@@ -12,7 +12,7 @@ var curWindVelocity = windVelocity;
 
 //User interact - artificial
 var userVector = {x:0,y:0};
-var sensivity = -0.1;
+var sensivity = -1;//0.1;
 var interactDuration = 50;
 window.interactTimer = null;
 
@@ -29,8 +29,8 @@ $(document).ready(function(){
         userVector.x = pEvent.movementX*sensivity;
         userVector.y = pEvent.movementY*sensivity;
         window.interactTimer = window.setTimeout(function(){
-            ChangeDirection();
             isAffectedByUser = false;
+            ChangeDirection();
         }, interactDuration);
     };
 
@@ -53,7 +53,7 @@ function BGAnimationTick(timeNow) {
     else
     {
         // lastMoveTime = timeNow;
-        delta = ApplyTimeDeltaIndependentCorrection(windVector, timeNow);
+        delta = ApplyTimeDeltaIndependentCorrection(VClone(windVector), timeNow);
     }
 
     // console.log(delta);
@@ -67,14 +67,15 @@ function MoveBG(deltaX, deltaY){
 
     newX = oldX + deltaX;
     newY = oldY + deltaY;
-    if(newX === oldX && newY === oldY)
-        return
+    // if(newX === oldX && newY === oldY)
+    //     return
     bgHeader.style.backgroundPosition = `${newX}px ${newY}px`;
     oldX = newX;
     oldY = newY;
 }
 
 function ApplyTimeDeltaIndependentCorrection(vector, timeNow){
+    vector = VClone(vector);
     var vnorm = VNorm(vector);
     var correction = ((timeNow - lastMoveTime)/1000);
     lastMoveTime = timeNow;
@@ -84,17 +85,19 @@ function ApplyTimeDeltaIndependentCorrection(vector, timeNow){
 
 function ChangeDirection(){
     // changeDirectionTimer = window.setInterval(ChangeDirectionTrans, 50);
-    // windVector.x = userVector.x;
-    // windVector.y = userVector.y;
+    windVector.x = userVector.x;
+    windVector.y = userVector.y;
+    curWindVelocity = VLen(userVector);
+    tsChangeDiretionStartVelocity = curWindVelocity;
 
     tsChangeDirectionStartTime = Date.now();
-    tsStartWindVelocity = VLen(userVector);
     tsChangeDirectionTimer = window.setInterval(ChangeDirectionTrans, 50);
+    console.log("ALL", tsChangeDiretionStartVelocity, windVelocity);
 }
     var tsChangeDirectionTimer = null;
     var tsChangeDirectionStartTime = Date.now();
-    var tsChangeDirectionDuration = 1000;
-    var tsStartWindVelocity = 0;
+    var tsChangeDirectionDuration = 500;
+    var tsChangeDiretionStartVelocity = 1;
 
     function ChangeDirectionTrans(){
         if(isAffectedByUser)
@@ -115,9 +118,9 @@ function ChangeDirection(){
         }
         else
         {
-            curWindVelocity = windVelocity - (tsStartWindVelocity - windVelocity)/(timeElapsed/tsChangeDirectionDuration);
-            windVector.x = userVector.x*(1 - timeElapsed/tsChangeDirectionDuration);
+            // curWindVelocity = windVelocity*(1 - timeElapsed/tsChangeDirectionDuration);
+            var xTime = timeElapsed / tsChangeDirectionDuration;
+            curWindVelocity = windVelocity - (windVelocity - tsChangeDiretionStartVelocity)*(1-xTime);
+            console.log("curWindVelocity", curWindVelocity, tsChangeDirectionDuration - timeElapsed, timeElapsed);
         }
-
-
     }
