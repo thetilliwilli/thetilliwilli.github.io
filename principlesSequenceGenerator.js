@@ -15,11 +15,17 @@ var principles = [
     ];
 $(document).ready(function(){
     var currentPrinciples = Array.from(principles);
-    $("#header h1")[0].onmouseenter = function(pEvent){
+
+    function ShowNewPrincipe(pEvent){
         if(currentPrinciples.length === 0)
                 currentPrinciples = Array.from(principles);
         var currIndex = 0;
-        pEvent.target.innerHTML = currentPrinciples[currIndex];
+        $("#header h1")[0].innerHTML = currentPrinciples[currIndex];
         currentPrinciples.splice(currIndex, 1);
-    }
+    };
+    
+    $("#header h1")[0].onmouseenter = ShowNewPrincipe;
+
+    document.addEventListener("touchstart", ShowNewPrincipe);
 });
+

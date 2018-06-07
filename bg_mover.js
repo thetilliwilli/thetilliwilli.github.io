@@ -34,6 +34,28 @@ $(document).ready(function () {
         }, interactDuration);
     };
 
+    var prevTouchScreenX = 0;
+    var prevTouchScreenY = 0;
+    document.addEventListener("touchmove", function(event){
+        window.clearTimeout(window.interactTimer);
+        isAffectedByUser = true;
+        var theTouch = event.changedTouches[0];
+        if(theTouch)
+        {
+
+            userVector.x = (prevTouchScreenX - theTouch.screenX) * sensivity;
+            userVector.y = (prevTouchScreenY - theTouch.screenY) * sensivity;
+            prevTouchScreenX = theTouch.screenX;
+            prevTouchScreenY = theTouch.screenY;
+        }
+        window.interactTimer = window.setTimeout(function () {
+            isAffectedByUser = false;
+            ChangeDirection();
+        }, interactDuration);
+    });
+
+    
+
     lastMoveTime = window.performance.now();
     window.requestAnimationFrame(BGAnimationTick);
 });
