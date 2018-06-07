@@ -1,0 +1,22 @@
+{
+  "name": "thetilliwilli.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack ./Source/index.js -o ./bundle.js --mode development",
+    "prod": "webpack ./Source/index.js -o ./bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetilliwilli/thetilliwilli.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thetilliwilli/thetilliwilli.github.io/issues"
+  },
+  "homepage": "https://github.com/thetilliwilli/thetilliwilli.github.io#readme"
+}
