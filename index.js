@@ -1,3 +1,5 @@
+$("#theMusic")[0].volume = 0.0;
+
 function ToogleMusic() {
     if ($("#musicOff").css("visibility") === "hidden") {
         $("#musicOn").css("visibility", "hidden");
@@ -24,10 +26,9 @@ function FadeInMusic(pVolumeDelta, pTimeDelta) {
 
     pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
     pTimeDelta = pTimeDelta ? pTimeDelta : 100;
-    var startVolume = 0.0;
-    var endVolume = 0.9;
     var theMusic = $("#theMusic")[0];
-    theMusic.volume = startVolume;
+    var startVolume = theMusic.volume;
+    var endVolume = 0.9;
     window.clearInterval(window.fadeOutMusicTimer);
     theMusic.play();
     window.fadeInMusicTimer = setInterval(function () {
