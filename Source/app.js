@@ -68,10 +68,9 @@ function FadeOutMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function OpenNewWindow(url, isTab) {
-    gtag('send', 'event', {
-        eventCategory: 'Outbound Link',
-        eventAction: 'click',
-        eventLabel: url
+    gtag('send', 'click', {
+        "event_category": 'Outbound Link',
+        "event_label": url
     });
 
     if (isTab)
