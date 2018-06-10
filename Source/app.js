@@ -17,7 +17,7 @@ window.fadeInMusicTimer = null;
 window.fadeOutMusicTimer = null;
 
 function FadeInMusic(pVolumeDelta, pTimeDelta) {
-    ga('send', {
+    gtag('send', {
         hitType: 'event',
         eventCategory: 'Music',
         eventAction: 'play',
@@ -42,7 +42,7 @@ function FadeInMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function FadeOutMusic(pVolumeDelta, pTimeDelta) {
-    ga('send', {
+    gtag('send', {
         hitType: 'event',
         eventCategory: 'Music',
         eventAction: 'pause',
@@ -68,7 +68,7 @@ function FadeOutMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function OpenNewWindow(url, isTab) {
-    ga('send', 'event', {
+    gtag('send', 'event', {
         eventCategory: 'Outbound Link',
         eventAction: 'click',
         eventLabel: url
