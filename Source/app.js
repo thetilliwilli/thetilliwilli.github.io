@@ -17,7 +17,7 @@ window.fadeInMusicTimer = null;
 window.fadeOutMusicTimer = null;
 
 function FadeInMusic(pVolumeDelta, pTimeDelta) {
-    gtag('send', {
+    gtag("event", {
         hitType: 'event',
         eventCategory: 'Music',
         eventAction: 'play',
@@ -42,7 +42,7 @@ function FadeInMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function FadeOutMusic(pVolumeDelta, pTimeDelta) {
-    gtag('send', {
+    gtag("event", {
         hitType: 'event',
         eventCategory: 'Music',
         eventAction: 'pause',
