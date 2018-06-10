@@ -17,12 +17,9 @@ window.fadeInMusicTimer = null;
 window.fadeOutMusicTimer = null;
 
 function FadeInMusic(pVolumeDelta, pTimeDelta) {
-    gtag("event", {
-        hitType: 'event',
-        eventCategory: 'Music',
-        eventAction: 'play',
-        eventLabel: 'MusicControls'
-      });
+    gtag("event", "FadeInMusic", {
+        "event_category": "music",
+    });
 
     pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
     pTimeDelta = pTimeDelta ? pTimeDelta : 100;
@@ -42,12 +39,9 @@ function FadeInMusic(pVolumeDelta, pTimeDelta) {
 }
 
 function FadeOutMusic(pVolumeDelta, pTimeDelta) {
-    gtag("event", {
-        hitType: 'event',
-        eventCategory: 'Music',
-        eventAction: 'pause',
-        eventLabel: 'MusicControls'
-      });
+    gtag("event", "FadeOutMusic", {
+        "event_category": "music",
+    });
 
     pVolumeDelta = pVolumeDelta ? pVolumeDelta : 0.03;
     pTimeDelta = pTimeDelta ? pTimeDelta : 100;
