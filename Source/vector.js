@@ -21,3 +21,5 @@ function VMul(v, scalar){
 function VClone(v){
     return JSON.parse(JSON.stringify(v));
 }
+
+module.exports = { VLen, VNorm, VMul, VClone };

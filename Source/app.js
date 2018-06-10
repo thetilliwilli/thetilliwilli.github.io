@@ -85,3 +85,8 @@ $("#GotoVK").click((e) => { OpenNewWindow("https://vk.com/tilliwilli", e.ctrlKey
 $("#GotoInstagram").click((e) => { OpenNewWindow("https://www.instagram.com/thetilliwilli", e.ctrlKey); })
 $("#GotoEMail").click((e) => { OpenNewWindow("mailto:tilliwilli@gmail.com", e.ctrlKey); })
 $("#GotoGithub").click((e) => { OpenNewWindow("https://github.com/thetilliwilli", e.ctrlKey); })
+
+Object.assign(window, {
+    ToogleMusic,
+    
+});

@@ -1,3 +1,5 @@
+const { VLen, VNorm, VMul, VClone } = require("./vector.js");
+
 //positions
 var oldX = 0, oldY = 0;
 var newX = 0, newY = 0;
