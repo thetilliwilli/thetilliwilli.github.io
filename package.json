@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-old": "webpack ./Source/Old/index.js -o ./bundle.js --mode development",
+    "prod-old": "webpack ./Source/Old/index.js -o ./bundle.js",
     "dev": "webpack ./Source/index.js -o ./bundle.js --mode development",
-    "prod": "webpack ./Source/index.js -o ./bundle.js"
+    "prod": "webpack ./Source/index.js -o ./bundle.js",
+    "dev-cont": "webpack ./Source/index.js -o ./bundle.js --mode development -w --devtool=eval",
+    "prod-cont": "webpack ./Source/index.js -o ./bundle.js -w"
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,14 @@
   "bugs": {
     "url": "https://github.com/thetilliwilli/thetilliwilli.github.io/issues"
   },
-  "homepage": "https://github.com/thetilliwilli/thetilliwilli.github.io#readme"
+  "homepage": "https://github.com/thetilliwilli/thetilliwilli.github.io#readme",
+  "dependencies": {
+    "react": "16.4.0",
+    "react-dom": "16.4.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-preset-react": "6.24.1"
+  }
 }

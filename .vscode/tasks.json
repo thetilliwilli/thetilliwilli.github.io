@@ -5,11 +5,23 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "prod",
+            "script": "prod"
+        },
+        {
+            "label": "Build Dev Once",
+            "type": "npm",
+            "script": "dev",
+            "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Build Dev Continuously",
+            "type": "npm",
+            "script": "dev-cont",
+            "problemMatcher": []
         }
     ]
 }
