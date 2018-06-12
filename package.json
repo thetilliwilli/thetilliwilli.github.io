@@ -9,7 +9,7 @@
     "prod-old": "webpack ./Source/Old/index.js -o ./bundle.js",
     "dev": "webpack ./Source/index.js -o ./bundle.js --mode development",
     "prod": "webpack ./Source/index.js -o ./bundle.js",
-    "dev-cont": "webpack ./Source/index.js -o ./bundle.js --mode development -w --devtool=eval",
+    "dev-cont": "webpack ./Source/index.js -o ./bundle.js --mode development -w --devtool='source-map'",
     "prod-cont": "webpack ./Source/index.js -o ./bundle.js -w"
   },
   "repository": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/thetilliwilli/thetilliwilli.github.io#readme",
   "dependencies": {
+    "@material-ui/core": "1.2.1",
     "@tilliwilli/locc": "^0.1.0",
     "react": "16.4.0",
     "react-dom": "16.4.0",

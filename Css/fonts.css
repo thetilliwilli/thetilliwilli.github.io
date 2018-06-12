@@ -1,2 +1,7 @@
 /* Импортируем шрифт Titillium */
+
+/* Мой шрифт для контента сайта*/
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,700");
+
+/* Шрифт для Material UI */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
