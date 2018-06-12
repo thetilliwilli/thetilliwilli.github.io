@@ -1,5 +1,5 @@
-import App from "./app.js";
-import Enviroment from "./enviroment.js";
+import App from "./app.jsx";
+import Enviroment from "./enviroment.jsx";
 import AppRunner from "./appRunner.js";
 
 const rootElementId = "app";
