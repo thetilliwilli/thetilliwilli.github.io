@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.tilliwilli.com/about/</loc>
+    <lastmod>2022-03-30T20:22:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.tilliwilli.com/</loc>
+    <lastmod>2022-03-30T20:22:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.tilliwilli.com/posts/first-post/</loc>
+    <lastmod>2022-03-30T19:15:27+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.tilliwilli.com/posts/</loc>
+    <lastmod>2022-03-30T19:15:27+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.tilliwilli.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.tilliwilli.com/tags/</loc>
+  </url>
+  
+</urlset>
