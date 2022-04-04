@@ -17,7 +17,7 @@
       <pubDate>Wed, 30 Mar 2022 19:15:27 +0300</pubDate>
       
       <guid>https://www.tilliwilli.com/posts/how-to-find-memory-address/</guid>
-      <description>Gdb is awesome tool to learn about programming and hacking. If &amp;ldquo;awesome&amp;rdquo; means complicated sometimes, a programmer should mean &amp;ldquo;decomplicater&amp;rdquo; every time. To decomplicate the task &amp;ldquo;Where the hell that address point to?&amp;rdquo; - there is a simple memfind tool (https://github.com/thetilliwilli/hacktools).
+      <description>Gdb is awesome tool to learn about programming and hacking. If &amp;ldquo;awesome&amp;rdquo; means complicated sometimes, a programmer should mean &amp;ldquo;decomplicater&amp;rdquo; every time. To decomplicate the task &amp;ldquo;Where the hell that address point to?&amp;rdquo; - there is a simple memfind tool from https://github.com/thetilliwilli/hacktools.
 download the tool
 ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ wget https://raw.githubusercontent.com/thetilliwilli/hacktools/main/memfind.py ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ chmod u+x memfind.py One shot usage ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ ./memfind.py 16238 0x55555596f000 55555596f000-555555991000 rw-p 00000000 00:00 0 [heap] Hack the python (REPL usage) Let&amp;rsquo;s hack python (executable built with debug symbols.</description>
     </item>

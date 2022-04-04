@@ -6,7 +6,7 @@
     
     <title>How to find virtual memory area using dgb and memfind tool | TilliWilli</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool (https://github.com/thetilliwilli/hacktools).
+    <meta name="description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool from https://github.com/thetilliwilli/hacktools.
 download the tool
 ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ wget https://raw.githubusercontent.com/thetilliwilli/hacktools/main/memfind.py ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ chmod u&#43;x memfind.py One shot usage ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ ./memfind.py 16238 0x55555596f000 55555596f000-555555991000 rw-p 00000000 00:00 0 [heap] Hack the python (REPL usage) Let&rsquo;s hack python (executable built with debug symbols.">
     <meta name="generator" content="Hugo 0.68.3" />
@@ -36,7 +36,7 @@ download the tool
     
     
     <meta property="og:title" content="How to find virtual memory area using dgb and memfind tool" />
-<meta property="og:description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool (https://github.com/thetilliwilli/hacktools).
+<meta property="og:description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool from https://github.com/thetilliwilli/hacktools.
 download the tool
 ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ wget https://raw.githubusercontent.com/thetilliwilli/hacktools/main/memfind.py ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ chmod u&#43;x memfind.py One shot usage ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ ./memfind.py 16238 0x55555596f000 55555596f000-555555991000 rw-p 00000000 00:00 0 [heap] Hack the python (REPL usage) Let&rsquo;s hack python (executable built with debug symbols." />
 <meta property="og:type" content="article" />
@@ -44,18 +44,18 @@ download the tool
 <meta property="article:published_time" content="2022-03-30T19:15:27+03:00" />
 <meta property="article:modified_time" content="2022-03-30T19:15:27+03:00" />
 <meta itemprop="name" content="How to find virtual memory area using dgb and memfind tool">
-<meta itemprop="description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool (https://github.com/thetilliwilli/hacktools).
+<meta itemprop="description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool from https://github.com/thetilliwilli/hacktools.
 download the tool
 ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ wget https://raw.githubusercontent.com/thetilliwilli/hacktools/main/memfind.py ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ chmod u&#43;x memfind.py One shot usage ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ ./memfind.py 16238 0x55555596f000 55555596f000-555555991000 rw-p 00000000 00:00 0 [heap] Hack the python (REPL usage) Let&rsquo;s hack python (executable built with debug symbols.">
 <meta itemprop="datePublished" content="2022-03-30T19:15:27&#43;03:00" />
 <meta itemprop="dateModified" content="2022-03-30T19:15:27&#43;03:00" />
-<meta itemprop="wordCount" content="490">
+<meta itemprop="wordCount" content="491">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How to find virtual memory area using dgb and memfind tool"/>
-<meta name="twitter:description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool (https://github.com/thetilliwilli/hacktools).
+<meta name="twitter:description" content="Gdb is awesome tool to learn about programming and hacking. If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time. To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple memfind tool from https://github.com/thetilliwilli/hacktools.
 download the tool
 ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ wget https://raw.githubusercontent.com/thetilliwilli/hacktools/main/memfind.py ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ chmod u&#43;x memfind.py One shot usage ┌──(tilli㉿pasakoh)-[~/cpython/build3.9] └─$ ./memfind.py 16238 0x55555596f000 55555596f000-555555991000 rw-p 00000000 00:00 0 [heap] Hack the python (REPL usage) Let&rsquo;s hack python (executable built with debug symbols."/>
 
@@ -141,7 +141,7 @@ download the tool
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><strong>Gdb</strong> is awesome tool to learn about programming and hacking.
 If &ldquo;awesome&rdquo; means complicated sometimes, a programmer should mean &ldquo;decomplicater&rdquo; every time.
-To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple <strong>memfind</strong> tool (<a href="https://github.com/thetilliwilli/hacktools)">https://github.com/thetilliwilli/hacktools)</a>.</p>
+To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - there is a simple <strong>memfind</strong> tool from <a href="https://github.com/thetilliwilli/hacktools">https://github.com/thetilliwilli/hacktools</a>.</p>
 <p>download the tool</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">┌──<span style="color:#f92672">(</span>tilli㉿pasakoh<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/cpython/build3.9<span style="color:#f92672">]</span>
 └─$ wget https://raw.githubusercontent.com/thetilliwilli/hacktools/main/memfind.py
