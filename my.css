@@ -1,0 +1,7 @@
+article.mw8 {                        
+max-width: 90rem;                    
+}                                    
+                                     
+article>div.nested-copy-line-height {
+width:100%;                          
+}                                    

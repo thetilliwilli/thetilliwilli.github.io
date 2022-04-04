@@ -23,6 +23,8 @@ download the tool
 
 
   
+    <link rel="stylesheet" href="/my.css">
+  
 
     
     
@@ -147,65 +149,65 @@ To decomplicate the task &ldquo;Where the hell that address point to?&rdquo; - t
 ┌──<span style="color:#f92672">(</span>tilli㉿pasakoh<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/cpython/build3.9<span style="color:#f92672">]</span>
 └─$ chmod u+x memfind.py
 </code></pre></div><h2 id="one-shot-usage">One shot usage</h2>
-<pre><code>┌──(tilli㉿pasakoh)-[~/cpython/build3.9]
-└─$ ./memfind.py 16238 0x55555596f000
-55555596f000-555555991000 rw-p 00000000 00:00 0                          [heap]
-</code></pre><h2 id="hack-the-python-repl-usage">Hack the python (REPL usage)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">┌──<span style="color:#f92672">(</span>tilli㉿pasakoh<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/cpython/build3.9<span style="color:#f92672">]</span>
+└─$ ./memfind.py <span style="color:#ae81ff">16238</span> 0x55555596f000
+55555596f000-555555991000 rw-p <span style="color:#ae81ff">00000000</span> 00:00 <span style="color:#ae81ff">0</span>                          <span style="color:#f92672">[</span>heap<span style="color:#f92672">]</span>
+</code></pre></div><h2 id="hack-the-python-repl-usage">Hack the python (REPL usage)</h2>
 <p>Let&rsquo;s hack python (executable built with debug symbols. python branch is 3.9 commit 612019e60e3a5340542122dabbc7ce5a27a8c635)</p>
-<pre><code>┌──(tilli㉿pasakoh)-[~/cpython/build3.9]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">┌──<span style="color:#f92672">(</span>tilli㉿pasakoh<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/cpython/build3.9<span style="color:#f92672">]</span>
 └─$ gdb python
-(gdb) break main
-Breakpoint 1 at 0x5a6b5: file ../Programs/python.c, line 14.
-(gdb) ! cat app.py
-some=input('get some: ')
-print(f'got: {some}')
-(gdb) run app.py
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> break main
+Breakpoint <span style="color:#ae81ff">1</span> at 0x5a6b5: file ../Programs/python.c, line 14.
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> ! cat app.py
+some<span style="color:#f92672">=</span>input<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;get some: &#39;</span><span style="color:#f92672">)</span>
+print<span style="color:#f92672">(</span>f<span style="color:#e6db74">&#39;got: {some}&#39;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> run app.py
 Starting program: /home/tilli/cpython/build3.9/python app.py
-Breakpoint 1, main (argc=2, argv=0x7fffffffe168) at ../Programs/python.c:14
-(gdb) info proc
-process 16238
-</code></pre><p>It&rsquo;s clear that program is given 2 arguments (argc=2).
+Breakpoint 1, main <span style="color:#f92672">(</span>argc<span style="color:#f92672">=</span>2, argv<span style="color:#f92672">=</span>0x7fffffffe168<span style="color:#f92672">)</span> at ../Programs/python.c:14
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> info proc
+process <span style="color:#ae81ff">16238</span>
+</code></pre></div><p>It&rsquo;s clear that program is given 2 arguments (argc=2).
 They are stored in argv array (start address 0x7fffffffe168).
 The signature of the array is: <code>char **argv</code> (from source code of python itself) - looks like it should be stored at heap.
 Cause everything that has dynamic/unpredictable length is stored at heap. I thought so before&hellip;</p>
-<pre><code>(gdb) x/2xg 0x7fffffffe168 # examine two values in hex form (of 8 bytes each) starting from the address
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> x/2xg 0x7fffffffe168 <span style="color:#75715e"># examine two values in hex form (of 8 bytes each) starting from the address</span>
 0x7fffffffe168: 0x00007fffffffe3dc      0x00007fffffffe400       
-(gdb) x/1s 0x00007fffffffe3dc # examine one value in null-terminated-string form starting from the address
-0x7fffffffe3dc: &quot;/home/tilli/cpython/build3.9/python&quot;            
-(gdb) x/1s 0x00007fffffffe400                                    
-0x7fffffffe400: &quot;app.py&quot;                                         
-</code></pre><p>Let&rsquo;s enter REPL mode and find the memory locations of above</p>
-<pre><code>┌──(tilli㉿pasakoh)-[~/cpython/build3.9]
-└─$ ./memfind.py 16238 #it's PID of the process under debug (gdb info proc)
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> x/1s 0x00007fffffffe3dc <span style="color:#75715e"># examine one value in null-terminated-string form starting from the address</span>
+0x7fffffffe3dc: <span style="color:#e6db74">&#34;/home/tilli/cpython/build3.9/python&#34;</span>            
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> x/1s 0x00007fffffffe400                                    
+0x7fffffffe400: <span style="color:#e6db74">&#34;app.py&#34;</span>                                         
+</code></pre></div><p>Let&rsquo;s enter REPL mode and find the memory locations of above</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">┌──<span style="color:#f92672">(</span>tilli㉿pasakoh<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/cpython/build3.9<span style="color:#f92672">]</span>
+└─$ ./memfind.py <span style="color:#ae81ff">16238</span> <span style="color:#75715e">#it&#39;s PID of the process under debug (gdb info proc)</span>
 address&gt; 0x7fffffffe168
-7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0                          [stack]
+7ffffffde000-7ffffffff000 rw-p <span style="color:#ae81ff">00000000</span> 00:00 <span style="color:#ae81ff">0</span>                          <span style="color:#f92672">[</span>stack<span style="color:#f92672">]</span>
 address&gt; 0x00007fffffffe3dc
-7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0                          [stack]
+7ffffffde000-7ffffffff000 rw-p <span style="color:#ae81ff">00000000</span> 00:00 <span style="color:#ae81ff">0</span>                          <span style="color:#f92672">[</span>stack<span style="color:#f92672">]</span>
 address&gt; 0x00007fffffffe400
-7ffffffde000-7ffffffff000 rw-p 00000000 00:00 0                          [stack]
-</code></pre><p>It&rsquo;s a stack!</p>
+7ffffffde000-7ffffffff000 rw-p <span style="color:#ae81ff">00000000</span> 00:00 <span style="color:#ae81ff">0</span>                          <span style="color:#f92672">[</span>stack<span style="color:#f92672">]</span>
+</code></pre></div><p>It&rsquo;s a stack!</p>
 <p>Now go create some value on the heap. After continue execution of app.py, we will stop waiting for input</p>
-<pre><code>(gdb) continue
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> <span style="color:#66d9ef">continue</span>
 Continuing.
 get some:
-</code></pre><p>Press Ctrl+C to switch to gdb</p>
-<pre><code>Program received signal SIGINT, Interrupt.                                                                            
-0x00007ffff7d66cae in __GI___libc_read (fd=0, buf=0x5555559d4cd0, nbytes=1024) at ../sysdeps/unix/sysv/linux/read.c:26
-26      ../sysdeps/unix/sysv/linux/read.c: No such file or directory.                                                 
-</code></pre><p>Looking at backtrace, the appropriate place to put breakpoint is Parser/myreadline.c:52 just after this line:</p>
-<pre><code>(gdb) bt                                                                                                                                               
+</code></pre></div><p>Press Ctrl+C to switch to gdb</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Program received signal SIGINT, Interrupt.                                                                            
+0x00007ffff7d66cae in __GI___libc_read <span style="color:#f92672">(</span>fd<span style="color:#f92672">=</span>0, buf<span style="color:#f92672">=</span>0x5555559d4cd0, nbytes<span style="color:#f92672">=</span>1024<span style="color:#f92672">)</span> at ../sysdeps/unix/sysv/linux/read.c:26
+<span style="color:#ae81ff">26</span>      ../sysdeps/unix/sysv/linux/read.c: No such file or directory.                                                 
+</code></pre></div><p>Looking at backtrace, the appropriate place to put breakpoint is Parser/myreadline.c:52 just after this line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> bt                                                                                                                                               
 ...
-#6  0x0000555555808495 in my_fgets (tstate=tstate@entry=0x555555992ed0,
-    buf=buf@entry=0x5555559925f0 '\315' &lt;repeats 100 times&gt;, &quot;\375\375\375\375\375\375\375\375&quot;, '\335' &lt;repeats 12 times&gt;, &quot;!\001&quot;, len=len@entry=100,
-    fp=fp@entry=0x7ffff7e369a0 &lt;_IO_2_1_stdin_&gt;) at ../Parser/myreadline.c:51
+<span style="color:#75715e">#6  0x0000555555808495 in my_fgets (tstate=tstate@entry=0x555555992ed0,</span>
+    buf<span style="color:#f92672">=</span>buf@entry<span style="color:#f92672">=</span>0x5555559925f0 <span style="color:#e6db74">&#39;\315&#39;</span> &lt;repeats <span style="color:#ae81ff">100</span> times&gt;, <span style="color:#e6db74">&#34;\375\375\375\375\375\375\375\375&#34;</span>, <span style="color:#e6db74">&#39;\335&#39;</span> &lt;repeats <span style="color:#ae81ff">12</span> times&gt;, <span style="color:#e6db74">&#34;!\001&#34;</span>, len<span style="color:#f92672">=</span>len@entry<span style="color:#f92672">=</span>100,
+    fp<span style="color:#f92672">=</span>fp@entry<span style="color:#f92672">=</span>0x7ffff7e369a0 &lt;_IO_2_1_stdin_&gt;<span style="color:#f92672">)</span> at ../Parser/myreadline.c:51
 ...
-</code></pre><p>create breakpoint</p>
-<pre><code>(gdb) break Parser/myreadline.c:52                                       
-Breakpoint 2 at 0x555555808495: file ../Parser/myreadline.c, line 52.
-(gdb) continue                                                       
+</code></pre></div><p>create breakpoint</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> break Parser/myreadline.c:52                                       
+Breakpoint <span style="color:#ae81ff">2</span> at 0x555555808495: file ../Parser/myreadline.c, line 52.
+<span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> <span style="color:#66d9ef">continue</span>                                                       
 Continuing.                                                          
-123456
-</code></pre><p>123456 - is input line from me. Here is source code (Ctrl+x in gdb to switch to gui mode)</p>
+<span style="color:#ae81ff">123456</span>
+</code></pre></div><p>123456 - is input line from me. Here is source code (Ctrl+x in gdb to switch to gui mode)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">   <span style="color:#ae81ff">44</span>              <span style="color:#a6e22e">while</span> (<span style="color:#ae81ff">1</span>) {                       
    <span style="color:#ae81ff">45</span>                  <span style="color:#66d9ef">if</span> (PyOS_InputHook <span style="color:#f92672">!=</span> NULL) { 
    <span style="color:#ae81ff">46</span>                      (<span style="color:#66d9ef">void</span>)(PyOS_InputHook)(); 
@@ -220,13 +222,13 @@ B<span style="color:#f92672">+&gt;</span><span style="color:#ae81ff">52</span>  
    <span style="color:#ae81ff">55</span>                  <span style="color:#66d9ef">int</span> err <span style="color:#f92672">=</span> errno;              
 
 </code></pre></div><p>The <strong>p</strong> value points to string. Let&rsquo;s check the memory address</p>
-<pre><code>(gdb) info locals            
-p = 0x5555559925f0 &quot;123456\n&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>gdb<span style="color:#f92672">)</span> info locals            
+p <span style="color:#f92672">=</span> 0x5555559925f0 <span style="color:#e6db74">&#34;123456\n&#34;</span>
 
-┌──(tilli㉿pasakoh)-[~/cpython/build3.9]                                       
-└─$ ./memfind.py 16238 0x5555559925f0                                          
-55555596f000-555555a1a000 rw-p 00000000 00:00 0                          [heap]
-</code></pre><p>It&rsquo;s a heap</p>
+┌──<span style="color:#f92672">(</span>tilli㉿pasakoh<span style="color:#f92672">)</span>-<span style="color:#f92672">[</span>~/cpython/build3.9<span style="color:#f92672">]</span>                                       
+└─$ ./memfind.py <span style="color:#ae81ff">16238</span> 0x5555559925f0                                          
+55555596f000-555555a1a000 rw-p <span style="color:#ae81ff">00000000</span> 00:00 <span style="color:#ae81ff">0</span>                          <span style="color:#f92672">[</span>heap<span style="color:#f92672">]</span>
+</code></pre></div><p>It&rsquo;s a heap</p>
 <hr>
 <p>That&rsquo;s all for now. Happy hacking!</p>
 <ul class="pa0">
