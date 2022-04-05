@@ -6,10 +6,19 @@
     <description>Recent content in Posts on TilliWilli</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Mar 2022 19:15:27 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 05 Apr 2022 19:32:46 +0300</lastBuildDate>
     
 	<atom:link href="https://www.tilliwilli.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Meme] Russians in 2022</title>
+      <link>https://www.tilliwilli.com/posts/russians-in-2022/</link>
+      <pubDate>Tue, 05 Apr 2022 19:32:46 +0300</pubDate>
+      
+      <guid>https://www.tilliwilli.com/posts/russians-in-2022/</guid>
+      <description>  </description>
+    </item>
     
     <item>
       <title>How to find virtual memory area using dgb and memfind tool</title>
